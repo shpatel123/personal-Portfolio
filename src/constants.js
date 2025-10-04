@@ -164,7 +164,7 @@ export const SkillsInfo = [
   export const projects = [
     {
       id: 0,
-      title: "weather-app",
+      title: "Weather-app",
       description:
        "API-based web app built using HTML, CSS, and JavaScript. Displays weather based on user's location or search input. Shows relevant weather images dynamically. Minimalist UI, fully responsive and mobile-friendly.",
       image: weather,
@@ -174,7 +174,7 @@ export const SkillsInfo = [
     },
     {
       id: 1,
-      title: "grocery Website",
+      title: "Grocery Website",
       description:
         "Built E-commerce food order website. In this website i create product and seller webpage. Authentication for both admin and user use jwt token, cookies and session. Uses MongoDB for data storage. User also can add product to cart and checkout then payment.",
       image: ecommerce,
@@ -190,7 +190,7 @@ export const SkillsInfo = [
       image: webAnalyzer,
       tags: ["React.js", "Tailwind CSS", "Firebase", "Node.js", "Express.js"],
       github: "https://github.com/shpatel123/Web-Accessibility-Analyzer/tree/master",
-      webapp: "https://github.com/shpatel123/Spotify-clone",
+      webapp: "https://web-accessibility-analyzer-2.onrender.com",
     },
     {
       id: 3,
@@ -214,7 +214,7 @@ export const SkillsInfo = [
     },
     {
       id: 5,
-      title: "disease-predictor",
+      title: "Disease-predictor",
       description:
         "Predicts disease based on symptoms using machine learning. Recommends appropriate drugs from dataset. Built with Flask and integrated with Google Gemini API. Uses Random Forest classifier for prediction.",
       image: disease,
