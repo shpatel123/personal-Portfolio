@@ -34,7 +34,7 @@ import kailash from './assets/education_logo/kailash.png';
 
 // Project Section Logo's
 import disease from "./assets/work_logo/disease.jpg";
-import newapp from "./assets/work_logo/newsapp.png";
+import saas from "./assets/work_logo/saas.png";
 import passop from "./assets/work_logo/passop.png";
 import weather from "./assets/work_logo/weather.jpg";
 import travels from "./assets/work_logo/wanderlust.png";
@@ -204,13 +204,13 @@ export const SkillsInfo = [
     },
     {
       id: 4,
-      title: "News App",
+      title: "AI Saas Platform",
       description:
-        "Built using React and News API. Shows latest news across categories. Modern responsive UI using Bootstrap. Fetches real-time articles using REST API.",
-      image: newapp,
-      tags:  ["React", "Bootstrap", "API"],
-      github: "https://github.com/shpatel123/Newsapp",
-      webapp: "https://shpatel123.github.io/Newsapp",
+        "Full stack website where user can use AI features like instagram caption generator, email writer, resume review, image generator etc. Built with React for frontend and Node.js with Express for backend. Integrated various AI APIs to provide functionalities.",
+      image: saas,
+      tags:  [ "React.js", "Node.js", "Express.js", "Neon (PostgreSQL)", "Clerk Authentication"],
+      github: "https://github.com/shpatel123/QuickAI",
+      webapp: "https://quickai-frontend-omgr.onrender.com/",
     },
     {
       id: 5,
