@@ -42,7 +42,9 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 w-full z-50 transition duration-300 px-[7vw] md:px-[7vw] lg:px-[20vw] ${
-        isScrolled ? "bg-[#050414]/70 backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled
+          ? "bg-[#050414]/70 backdrop-blur-md shadow-md"
+          : "bg-transparent"
       }`}
     >
       <div className="text-white py-5 flex justify-between items-center">
@@ -127,7 +129,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414]/80 backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden"
+            className="absolute top-16 left-0 w-full bg-[#050414]/80 backdrop-blur-lg z-50 rounded-b-lg shadow-lg md:hidden"
           >
             <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
               {menuItems.map((item) => (
@@ -143,7 +145,7 @@ const Navbar = () => {
                   </button>
                 </motion.li>
               ))}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 py-2">
                 <a
                   href="https://github.com/shpatel123"
                   target="_blank"

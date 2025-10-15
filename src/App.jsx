@@ -12,7 +12,7 @@ import Certificate from "./components/Certificate/Certificate";
 
 const App = () => {
   return (
-    <div className="bg-[#050414]">
+    <div className="bg-[#050414] overflow-x-hidden">
 
        <BlurBlob position={{ top: '35%', left: '20%' }} size={{ width: '30%', height: '40%' }} />
 
