@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +18,13 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Smooth scroll function
+  // Smooth scroll
   const handleMenuItemClick = (sectionId) => {
     setActiveSection(sectionId);
     setIsOpen(false);
 
     const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+    if (section) section.scrollIntoView({ behavior: "smooth" });
   };
 
   const menuItems = [
@@ -38,39 +37,54 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -80 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 w-full z-50 transition duration-300 px-[7vw] md:px-[7vw] lg:px-[20vw] ${
-        isScrolled ? "bg-[#050414] bg-opacity-50 backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled ? "bg-[#050414]/70 backdrop-blur-md shadow-md" : "bg-transparent"
       }`}
     >
       <div className="text-white py-5 flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-lg font-semibold cursor-pointer">
+        {/* Logo with animation */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-lg font-semibold cursor-pointer"
+        >
           <span className="text-[#8245ec]">&lt;</span>
           <span className="text-white">Shubham</span>
           <span className="text-[#8245ec]">/</span>
           <span className="text-white">Bhalala</span>
           <span className="text-[#8245ec]">&gt;</span>
-        </div>
+        </motion.div>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-gray-300">
-          {menuItems.map((item) => (
-            <li
+          {menuItems.map((item, index) => (
+            <motion.li
               key={item.id}
-              className={`cursor-pointer hover:text-[#8245ec] ${
+              whileHover={{ scale: 1.1, color: "#8245ec" }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className={`cursor-pointer transition ${
                 activeSection === item.id ? "text-[#8245ec]" : ""
               }`}
             >
               <button onClick={() => handleMenuItemClick(item.id)}>
                 {item.label}
               </button>
-            </li>
+            </motion.li>
           ))}
         </ul>
 
         {/* Social Icons */}
-        <div className="hidden md:flex space-x-4">
+        <motion.div
+          className="hidden md:flex space-x-4"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <a
             href="https://github.com/shpatel123"
             target="_blank"
@@ -87,7 +101,7 @@ const Navbar = () => {
           >
             <FaLinkedin size={24} />
           </a>
-        </div>
+        </motion.div>
 
         {/* Mobile Menu Icon */}
         <div className="md:hidden">
@@ -105,44 +119,53 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Items */}
-      {isOpen && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414] bg-opacity-50 backdrop-filter backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden">
-          <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
-            {menuItems.map((item) => (
-              <li
-                key={item.id}
-                className={`cursor-pointer hover:text-white ${
-                  activeSection === item.id ? "text-[#8245ec]" : ""
-                }`}
-              >
-                <button onClick={() => handleMenuItemClick(item.id)}>
-                  {item.label}
-                </button>
-              </li>
-            ))}
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com/codingmastr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaGithub size={24} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/tarun-kaushik-553b441a4"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white"
-              >
-                <FaLinkedin size={24} />
-              </a>
-            </div>
-          </ul>
-        </div>
-      )}
-    </nav>
+      {/* Mobile Menu Animation */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414]/80 backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden"
+          >
+            <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
+              {menuItems.map((item) => (
+                <motion.li
+                  key={item.id}
+                  whileHover={{ scale: 1.1, color: "#8245ec" }}
+                  className={`cursor-pointer ${
+                    activeSection === item.id ? "text-[#8245ec]" : ""
+                  }`}
+                >
+                  <button onClick={() => handleMenuItemClick(item.id)}>
+                    {item.label}
+                  </button>
+                </motion.li>
+              ))}
+              <div className="flex space-x-4">
+                <a
+                  href="https://github.com/shpatel123"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#8245ec]"
+                >
+                  <FaGithub size={24} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/shubham-bhalala-b74994269/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[#8245ec]"
+                >
+                  <FaLinkedin size={24} />
+                </a>
+              </div>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 

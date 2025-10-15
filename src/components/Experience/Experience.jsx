@@ -1,14 +1,60 @@
-import React from "react";
-import { experiences } from "../../constants"; // Import your data
+import React, { useEffect, useRef } from "react";
+import { experiences } from "../../constants";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate each experience card
+      gsap.utils.toArray(".experience-card").forEach((card, i) => {
+        const fromDirection = i % 2 === 0 ? -100 : 100; // alternate left-right
+
+        gsap.fromTo(
+          card,
+          { x: fromDirection, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+
+      // Animate section title
+      gsap.from(sectionRef.current.querySelector(".section-title"), {
+        y: -50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert(); // cleanup
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="experience"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans bg-skills-gradient clip-path-custom-2"
+      className="py-24 pb-24 px-[8vw] md:px-[10vw] lg:px-[14vw] font-sans bg-skills-gradient clip-path-custom-2"
     >
       {/* Section Title */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 section-title">
         <h2 className="text-4xl font-bold text-white">EXPERIENCE</h2>
         <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
         <p className="text-gray-400 mt-4 text-lg font-semibold">
@@ -19,19 +65,22 @@ const Experience = () => {
 
       {/* Experience Timeline */}
       <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 sm:-translate-x-0 w-1 bg-white h-full"></div>
+        {/* Vertical Line */}
+        <div className="absolute left-1/2 top-0 transform -translate-x-1/2 w-1 bg-white h-full"></div>
 
         {/* Experience Entries */}
         {experiences.map((experience, index) => (
           <div
             key={experience.id}
-            className={`flex flex-col sm:flex-row items-center mb-16 ${
+            className={`experience-card flex flex-col sm:flex-row items-center mb-20 relative ${
               index % 2 === 0 ? "sm:justify-end" : "sm:justify-start"
             }`}
           >
             {/* Timeline Circle */}
-            <div className="absolute sm:left-1/2 left-0 transform -translate-x-1/2 bg-gray-400 border-4 border-[#8245ec] w-12 h-12 sm:w-16 sm:h-16 rounded-full flex justify-center items-center z-10">
+            <div
+              className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
+              bg-gray-400 border-4 border-[#8245ec] w-12 h-12 sm:w-16 sm:h-16 rounded-full flex justify-center items-center z-20"
+            >
               <img
                 src={experience.img}
                 alt={experience.company}
@@ -39,16 +88,23 @@ const Experience = () => {
               />
             </div>
 
-            {/* Content Section */}
+            {/* Content Card */}
             <div
-              className={`w-full sm:max-w-md p-4 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md shadow-[0_0_20px_1px_rgba(130,69,236,0.3)] ${
-                index % 2 === 0 ? "sm:ml-0" : "sm:mr-0"
-              } sm:ml-44 sm:mr-44 ml-8 transform transition-transform duration-300 hover:scale-105`}
+              className={`w-full sm:max-w-md p-6 sm:p-8 rounded-2xl shadow-2xl border border-white bg-gray-900 backdrop-blur-md 
+              shadow-[0_0_20px_1px_rgba(130,69,236,0.3)] transform transition-transform duration-300 hover:scale-105 
+              ${
+                index % 2 === 0
+                  ? "sm:mr-[calc(50%+3rem)] sm:text-right"
+                  : "sm:ml-[calc(50%+3rem)] sm:text-left"
+              }`}
             >
-              {/* Flex container for image and text */}
-              <div className="flex items-center space-x-6">
-                {/* Company Logo/Image */}
-                <div className="w-16 h-16 bg-white rounded-md overflow-hidden">
+              {/* Company Info */}
+              <div
+                className={`flex items-center ${
+                  index % 2 === 0 ? "sm:flex-row-reverse" : ""
+                } sm:space-x-6 sm:space-x-reverse`}
+              >
+                <div className="w-16 h-16 bg-white rounded-md overflow-hidden flex-shrink-0">
                   <img
                     src={experience.img}
                     alt={experience.company}
@@ -56,28 +112,29 @@ const Experience = () => {
                   />
                 </div>
 
-                {/* Role, Company Name, and Date */}
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between mt-4 sm:mt-0">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-semibold text-white">
                       {experience.role}
                     </h3>
-                    <h4 className="text-md sm:text-sm text-gray-300">
+                    <h4 className="text-sm text-gray-300">
                       {experience.company}
                     </h4>
                   </div>
-                  {/* Date at the bottom */}
                   <p className="text-sm text-gray-500 mt-2">{experience.date}</p>
                 </div>
               </div>
 
+              {/* Description */}
               <p className="mt-4 text-gray-400">{experience.desc}</p>
+
+              {/* Skills */}
               <div className="mt-4">
                 <h5 className="font-medium text-white">Skills:</h5>
                 <ul className="flex flex-wrap mt-2">
-                  {experience.skills.map((skill, index) => (
+                  {experience.skills.map((skill, i) => (
                     <li
-                      key={index}
+                      key={i}
                       className="bg-[#8245ec] text-gray-300 px-4 py-1 text-xs sm:text-sm rounded-lg mr-2 mb-2 border border-gray-400"
                     >
                       {skill}

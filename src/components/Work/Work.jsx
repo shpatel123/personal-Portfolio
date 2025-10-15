@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { projects } from "../../constants";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useLenis from "../../utils/useLenis";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Work = () => {
+  useLenis(); // Smooth scroll
+
   const [selectedProject, setSelectedProject] = useState(null);
+  const cardsWrapperRef = useRef([]);
+  const modalRef = useRef(null);
 
   const handleOpenModal = (project) => {
     setSelectedProject(project);
@@ -11,6 +20,34 @@ const Work = () => {
   const handleCloseModal = () => {
     setSelectedProject(null);
   };
+
+  // Animate wrapper divs on scroll
+  useEffect(() => {
+    gsap.from(cardsWrapperRef.current, {
+      opacity: 0,
+      y: 50,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: cardsWrapperRef.current[0],
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }, []);
+
+  // Animate modal
+  useEffect(() => {
+    if (selectedProject && modalRef.current) {
+      gsap.from(modalRef.current, {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.5,
+        ease: "power3.out",
+      });
+    }
+  }, [selectedProject]);
 
   return (
     <section
@@ -29,44 +66,53 @@ const Work = () => {
 
       {/* Projects Grid */}
       <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
+          // Wrapper for GSAP animation
           <div
             key={project.id}
-            onClick={() => handleOpenModal(project)}
-            className="border border-white bg-gray-900 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer hover:shadow-purple-500/50 hover:-translate-y-2 transition-transform duration-300"
+            ref={(el) => (cardsWrapperRef.current[index] = el)}
           >
-            <div className="p-4">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-xl"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-gray-500 mb-4 pt-4 line-clamp-3">
-                {project.description}
-              </p>
-              <div className="mb-4">
-                {project.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="inline-block bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1 mr-2 mb-2"
-                  >
-                    {tag}
-                  </span>
-                ))}
+            {/* Card with hover */}
+            <div
+              onClick={() => handleOpenModal(project)}
+              className="border border-white bg-gray-900 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer transition-transform duration-300 hover:shadow-purple-500/50 hover:-translate-y-2"
+            >
+              <div className="p-4">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-48 object-cover rounded-xl"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-500 mb-4 pt-4 line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="mb-4">
+                  {project.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-block bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1 mr-2 mb-2"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal Container */}
+      {/* Modal */}
       {selectedProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
+        <div
+          ref={modalRef}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
+        >
           <div className="bg-gray-900 rounded-xl shadow-2xl lg:w-full w-[90%] max-w-3xl overflow-hidden relative">
             <div className="flex justify-end p-4">
               <button
@@ -93,9 +139,9 @@ const Work = () => {
                   {selectedProject.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {selectedProject.tags.map((tag, index) => (
+                  {selectedProject.tags.map((tag, idx) => (
                     <span
-                      key={index}
+                      key={idx}
                       className="bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1"
                     >
                       {tag}

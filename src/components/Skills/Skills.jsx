@@ -3,6 +3,9 @@ import React, { useEffect, useRef } from "react";
 import { SkillsInfo } from "../../constants";
 import Tilt from "react-parallax-tilt";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
   const sectionRef = useRef(null);
@@ -11,6 +14,11 @@ const Skills = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         defaults: { duration: 1, ease: "power3.out" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%", // when top of section hits 80% of viewport
+          toggleActions: "play none none reverse",
+        },
       });
 
       // Animate section title
@@ -23,23 +31,19 @@ const Skills = () => {
           { y: 20, opacity: 0 },
           "-=0.6"
         )
-        // Animate each skill card
+        // Animate each skill card container
         .from(
-          sectionRef.current.querySelectorAll(
-            ".bg-gray-900.backdrop-blur-md"
-          ),
+          sectionRef.current.querySelectorAll(".skill-card"),
           {
             opacity: 0,
-            y: 50,
+            y: 60,
             stagger: 0.2,
           },
           "-=0.3"
         )
-        // Animate skill items inside
+        // Animate each skill item
         .from(
-          sectionRef.current.querySelectorAll(
-            ".flex.items-center.justify-center"
-          ),
+          sectionRef.current.querySelectorAll(".skill-item"),
           {
             opacity: 0,
             scale: 0.5,
@@ -50,7 +54,7 @@ const Skills = () => {
         );
     }, sectionRef);
 
-    return () => ctx.revert(); // cleanup
+    return () => ctx.revert(); // Cleanup GSAP context
   }, []);
 
   return (
@@ -73,16 +77,14 @@ const Skills = () => {
         {SkillsInfo.map((category) => (
           <div
             key={category.title}
-            className="bg-gray-900 backdrop-blur-md px-6 sm:px-10 py-8 sm:py-6 mb-10 w-full sm:w-[48%] rounded-2xl border border-white 
-          shadow-[0_0_20px_1px_rgba(130,69,236,0.3)]"
+            className="skill-card bg-gray-900 backdrop-blur-md px-6 sm:px-10 py-8 sm:py-6 mb-10 w-full sm:w-[48%] rounded-2xl border border-white shadow-[0_0_20px_1px_rgba(130,69,236,0.3)]"
           >
             <h3 className="text-2xl sm:text-3xl font-semibold text-gray-400 mb-4 text-center">
               {category.title}
             </h3>
 
-            {/* Skill Items - 3 per row on larger screens */}
+            {/* Skill Items */}
             <Tilt
-              key={category.title}
               tiltMaxAngleX={20}
               tiltMaxAngleY={20}
               perspective={1000}
@@ -94,7 +96,7 @@ const Skills = () => {
                 {category.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="flex items-center justify-center space-x-2 bg-transparent border-2 border-gray-700 rounded-3xl py-2 px-2 sm:py-2 sm:px-2 text-center"
+                    className="skill-item flex items-center justify-center space-x-2 bg-transparent border-2 border-gray-700 rounded-3xl py-2 px-2 sm:py-2 sm:px-2 text-center"
                   >
                     <img
                       src={skill.logo}

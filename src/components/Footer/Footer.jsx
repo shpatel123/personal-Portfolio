@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+  const footerRef = useRef(null);
+
   // Smooth scroll function
   const handleScroll = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -10,14 +16,72 @@ const Footer = () => {
     }
   };
 
+  // GSAP Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animate Name/Logo
+      gsap.from(".footer-logo", {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+        },
+      });
+
+      // Animate Navigation Links
+      gsap.from(".footer-nav button", {
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+        },
+      });
+
+      // Animate Social Icons
+      gsap.from(".footer-social a", {
+        scale: 0,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+        },
+      });
+
+      // Animate Copyright
+      gsap.from(".footer-copy", {
+        y: 20,
+        opacity: 0,
+        duration: 1,
+        delay: 0.3,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: footerRef.current,
+          start: "top 90%",
+        },
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer className="text-white py-8 px-[12vw] md:px-[7vw] lg:px-[20vw]">
+    <footer ref={footerRef} className="text-white py-8 px-[12vw] md:px-[7vw] lg:px-[20vw]">
       <div className="container mx-auto text-center">
         {/* Name / Logo */}
-        <h2 className="text-xl font-semibold text-purple-500">Shubham Bhalala</h2>
+        <h2 className="text-xl font-semibold text-purple-500 footer-logo">Shubham Bhalala</h2>
 
-        {/* Navigation Links - Responsive */}
-        <nav className="flex flex-wrap justify-center space-x-4 sm:space-x-6 mt-4">
+        {/* Navigation Links */}
+        <nav className="flex flex-wrap justify-center space-x-4 sm:space-x-6 mt-4 footer-nav">
           {[
             { name: "About", id: "about" },
             { name: "Skills", id: "skills" },
@@ -36,15 +100,14 @@ const Footer = () => {
           ))}
         </nav>
 
-        {/* Social Media Icons - Responsive */}
-        <div className="flex flex-wrap justify-center space-x-4 mt-6">
+        {/* Social Media Icons */}
+        <div className="flex flex-wrap justify-center space-x-4 mt-6 footer-social">
           {[
             { icon: <FaFacebook />, link: "#" },
             { icon: <FaTwitter />, link: "#" },
             { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/shubham-bhalala-b74994269/" },
             { icon: <FaInstagram />, link: "#" },
             { icon: <FaYoutube />, link: "#" },
-            
           ].map((item, index) => (
             <a
               key={index}
@@ -59,7 +122,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright Text */}
-        <p className="text-sm text-gray-400 mt-6">
+        <p className="text-sm text-gray-400 mt-6 footer-copy">
           © 2025 Shubham Bhalala. All rights reserved.
         </p>
       </div>
