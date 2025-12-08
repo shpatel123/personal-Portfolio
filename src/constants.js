@@ -41,6 +41,7 @@ import weather from "./assets/work_logo/weather.jpg";
 import travels from "./assets/work_logo/wanderlust.png";
 import ecommerce from "./assets/work_logo/ecommerce.png";
 import webAnalyzer from "./assets/work_logo/web analyzer.png";
+import Aitrip from "./assets/work_logo/ai trip.png";
 
 //certificate section logo
 import openweaver from "./assets/certificate_logo/openweaver.png";
@@ -182,7 +183,7 @@ export const SkillsInfo = [
       image: ecommerce,
       tags: ["React.js", "Node.js","Express.js", "Tailwind CSS", "MongoDB", "Cloud service"],
       github: "https://github.com/shpatel123/Grocery-Website",
-      webapp: "https://grocery-website-frontend-h5p9.onrender.com/",
+      webapp: "https://e-commerce-webapp-nu.vercel.app/",
     },
     {
       id: 2,
@@ -216,13 +217,13 @@ export const SkillsInfo = [
     },
     {
       id: 5,
-      title: "Disease-predictor",
+      title: "AI Trip Planner",
       description:
-        "Predicts disease based on symptoms using machine learning. Recommends appropriate drugs from dataset. Built with Flask and integrated with Google Gemini API. Uses Random Forest classifier for prediction.",
-      image: disease,
-      tags:["Python", "Machine Learning", "Flask"],
-      github: "https://github.com/shpatel123/disease-prediction-",
-      webapp: "https://webversedigital.com/",
+        "AI Trip Planner is an innovative, AI-powered travel planning platform that transforms how users create personalized travel itineraries.",
+      image: Aitrip,
+      tags:["Next.js", " TypeScript ", "React.js", "Tailwind CSS", "Convex", "Clerk", "Arcjet"],
+      github: "https://github.com/shpatel123/Trip-Planner",
+      webapp: "https://trip-planner-c5f8pzhoc-shubham-bhalalas-projects.vercel.app/",
     },
   ];  
 

@@ -90,7 +90,7 @@ const Experience = () => {
       ${
         index % 2 === 0
           ? "sm:mr-auto sm:ml-0 text-left" // LEFT card content aligned left
-          : "sm:ml-auto sm:mr-0 text-right" // RIGHT card content aligned right
+          : "sm:ml-auto sm:mr-0" // RIGHT card content aligned right
       }`}
             >
               {/* Flex container for image and text */}
