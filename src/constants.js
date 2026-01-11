@@ -174,7 +174,7 @@ export const projects = [
     image: study,
     tags: ["React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js"],
     github: "https://github.com/shpatel123/Studymgr",
-    webapp: "https://shpatel123.github.io/Weather-App/",
+    webapp: "https://studymgr-49x4rskez-shubham-bhalalas-projects.vercel.app/",
   },
   {
     id: 1,
