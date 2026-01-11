@@ -42,6 +42,7 @@ import travels from "./assets/work_logo/wanderlust.png";
 import ecommerce from "./assets/work_logo/ecommerce.png";
 import webAnalyzer from "./assets/work_logo/web analyzer.png";
 import Aitrip from "./assets/work_logo/ai trip.png";
+import study from "./assets/work_logo/study.png";
 
 //certificate section logo
 import openweaver from "./assets/certificate_logo/openweaver.png";
@@ -100,132 +101,132 @@ export const SkillsInfo = [
   },
 ];
 
-  export const experiences = [
-    {
-      id: 0,
-      img: Brainybeam,
-      role: "Fullstack Developer",
-      company: "Brainybeam Info-Tech PVT LTD",
-      date: "May 26 - June-24",
-      desc: "Developed dynamic and scalable web applications using the MERN stack, handling both frontend and backend development. Collaborated with cross-functional teams to build responsive UI, implement RESTful APIs, and optimize application performance in an agile environment.",
-      skills: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "React JS",
-        "Node JS",
-        "Tailwind CSS",
-        "MongoDb",
-      ],
-    },
-    {
-      id: 1,
-      img: tss,
-      role: "Python Developer Intern",
-      company: "TSS Consultancy Pvt Ltd",
-      date: "Jan 25 - May 25 ",
-      desc: "Contributed to innovative projects as a Fullstack Engineer, leading both frontend and backend development using technologies such as HTML, CSS, JavaScript, PHP, SQL, Bootstrap, and ReactJS. Worked closely with the team to deliver responsive, high-performance web applications and improve user experience through seamless integration of various technologies.",
-      skills: [
-        "Python",
-        "scarpy",
-        "git",
-        "SQL",
-      ],
-    },
-  ];
-  
-  export const education = [
-    {
-      id: 0,
-      img: marwadi,
-      school: "B.Tech Marwadi University, Rajkot",
-      date: "Sept 2022 - Present",
-      grade: "9.08 CGPA",
-      desc: "I completed my Bachelor's degree in Information Technology from Marwadi University College, Rajkot. Throughout my studies, I was immersed in a variety of subjects that deepened my understanding of computing and technology. From exploring Data Structures and Algorithms to diving into Web Development and Database Management Systems, I gained practical insights into the world of software development. My time at B.Tech College allowed me to work on projects that applied theoretical concepts to real-world problems.",
-      degree: "Bachelor of Technology - B.Tech (Information Technology)",
-    },
-    {
-      id: 1,
-      img: sarvoday,
-      school: "Sarvoday, Rajkot",
-      date: "Apr 2019 - March 2021",
-      grade: "65.07%",
-      desc: "I completed my class 12 education from Sarvoday School, under the CBSE board, where I studied Physics, Chemistry, and Mathematics (PCM) with Computer Science.",
-      degree: "CBSE(XII) - PCM with Computer Science",
-    },
-    {
-      id: 2,
-      img: kailash,
-      school: "Kailash school, Rajkot",
-      date: "Apr 2012 - March 2018",
-      grade: "77.3%",
-      desc: "I completed my class 10 education from kailash School, under the CBSE board, where I studied Science with Computer.",
-      degree: "CBSE(X), Science with Computer Application",
-    },
-  ];
-  
-  export const projects = [
-    {
-      id: 0,
-      title: "Weather-app",
-      description:
-       "API-based web app built using HTML, CSS, and JavaScript. Displays weather based on user's location or search input. Shows relevant weather images dynamically. Minimalist UI, fully responsive and mobile-friendly.",
-      image: weather,
-      tags:  ["HTML", "CSS", "JavaScript", "API"],
-      github: "https://github.com/shpatel123/Weather-App",
-      webapp: "https://shpatel123.github.io/Weather-App/",
-    },
-    {
-      id: 1,
-      title: "Grocery Website",
-      description:
-        "Built E-commerce food order website. In this website i create product and seller webpage. Authentication for both admin and user use jwt token, cookies and session. Uses MongoDB for data storage. User also can add product to cart and checkout then payment.",
-      image: ecommerce,
-      tags: ["React.js", "Node.js","Express.js", "Tailwind CSS", "MongoDB", "Cloud service"],
-      github: "https://github.com/shpatel123/Grocery-Website",
-      webapp: "https://e-commerce-webapp-nu.vercel.app/",
-    },
-    {
-      id: 2,
-      title: "Web Accessibility Analyzer",
-      description:
-        "A comprehensive full-stack web application that automatically scans websites for accessibility issues and provides detailed reports with actionable insights. Built to help developers create more inclusive web experiences.",
-      image: webAnalyzer,
-      tags: ["React.js", "Tailwind CSS", "Firebase", "Node.js", "Express.js"],
-      github: "https://github.com/shpatel123/Web-Accessibility-Analyzer/tree/master",
-      webapp: "https://web-accessibility-analyzer-2.onrender.com",
-    },
-    {
-      id: 3,
-      title: "Wanderlust Travel Website",
-      description:
-        "Full-stack travel website built with Node.js and Express. Implements CRUD features for travel listings. Responsive frontend using Bootstrap. Integrates cloud services and third-party APIs.",
-      image: travels,
-      tags: ["Node.js", "Express", "MongoDB", "Bootstrap", "API", "Cloud service"],
-      github: "https://github.com/shpatel123/Wanderlust-Website",
-      webapp: "https://www.npmjs.com/package/cmtk-email-validator",
-    },
-    {
-      id: 4,
-      title: "AI Saas Platform",
-      description:
-        "Full stack website where user can use AI features like instagram caption generator, email writer, resume review, image generator etc. Built with React for frontend and Node.js with Express for backend. Integrated various AI APIs to provide functionalities.",
-      image: saas,
-      tags:  [ "React.js", "Node.js", "Express.js", "Neon (PostgreSQL)", "Clerk Authentication"],
-      github: "https://github.com/shpatel123/QuickAI",
-      webapp: "https://quickai-frontend-omgr.onrender.com/",
-    },
-    {
-      id: 5,
-      title: "AI Trip Planner",
-      description:
-        "AI Trip Planner is an innovative, AI-powered travel planning platform that transforms how users create personalized travel itineraries.",
-      image: Aitrip,
-      tags:["Next.js", " TypeScript ", "React.js", "Tailwind CSS", "Convex", "Clerk", "Arcjet"],
-      github: "https://github.com/shpatel123/Trip-Planner",
-      webapp: "https://trip-planner-c5f8pzhoc-shubham-bhalalas-projects.vercel.app/",
-    },
-  ];  
+export const experiences = [
+  {
+    id: 0,
+    img: Brainybeam,
+    role: "Fullstack Developer",
+    company: "Brainybeam Info-Tech PVT LTD",
+    date: "May 26 - June-24",
+    desc: "Developed dynamic and scalable web applications using the MERN stack, handling both frontend and backend development. Collaborated with cross-functional teams to build responsive UI, implement RESTful APIs, and optimize application performance in an agile environment.",
+    skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React JS",
+      "Node JS",
+      "Tailwind CSS",
+      "MongoDb",
+    ],
+  },
+  {
+    id: 1,
+    img: tss,
+    role: "Python Developer Intern",
+    company: "TSS Consultancy Pvt Ltd",
+    date: "Jan 25 - May 25 ",
+    desc: "Contributed to innovative projects as a Fullstack Engineer, leading both frontend and backend development using technologies such as HTML, CSS, JavaScript, PHP, SQL, Bootstrap, and ReactJS. Worked closely with the team to deliver responsive, high-performance web applications and improve user experience through seamless integration of various technologies.",
+    skills: [
+      "Python",
+      "scarpy",
+      "git",
+      "SQL",
+    ],
+  },
+];
+
+export const education = [
+  {
+    id: 0,
+    img: marwadi,
+    school: "B.Tech Marwadi University, Rajkot",
+    date: "Sept 2022 - Present",
+    grade: "9.08 CGPA",
+    desc: "I completed my Bachelor's degree in Information Technology from Marwadi University College, Rajkot. Throughout my studies, I was immersed in a variety of subjects that deepened my understanding of computing and technology. From exploring Data Structures and Algorithms to diving into Web Development and Database Management Systems, I gained practical insights into the world of software development. My time at B.Tech College allowed me to work on projects that applied theoretical concepts to real-world problems.",
+    degree: "Bachelor of Technology - B.Tech (Information Technology)",
+  },
+  {
+    id: 1,
+    img: sarvoday,
+    school: "Sarvoday, Rajkot",
+    date: "Apr 2019 - March 2021",
+    grade: "65.07%",
+    desc: "I completed my class 12 education from Sarvoday School, under the CBSE board, where I studied Physics, Chemistry, and Mathematics (PCM) with Computer Science.",
+    degree: "CBSE(XII) - PCM with Computer Science",
+  },
+  {
+    id: 2,
+    img: kailash,
+    school: "Kailash school, Rajkot",
+    date: "Apr 2012 - March 2018",
+    grade: "77.3%",
+    desc: "I completed my class 10 education from kailash School, under the CBSE board, where I studied Science with Computer.",
+    degree: "CBSE(X), Science with Computer Application",
+  },
+];
+
+export const projects = [
+  {
+    id: 0,
+    title: "Study Manager",
+    description:
+      "StudyMgr is a modern, full-stack application designed to help students organize their study materials, manage notes, and leverage AI power for their learning journey.",
+    image: study,
+    tags: ["React.js", "Tailwind CSS", "MongoDB", "Node.js", "Express.js"],
+    github: "https://github.com/shpatel123/Studymgr",
+    webapp: "https://shpatel123.github.io/Weather-App/",
+  },
+  {
+    id: 1,
+    title: "Grocery Website",
+    description:
+      "Built E-commerce food order website. In this website i create product and seller webpage. Authentication for both admin and user use jwt token, cookies and session. Uses MongoDB for data storage. User also can add product to cart and checkout then payment.",
+    image: ecommerce,
+    tags: ["React.js", "Node.js", "Express.js", "Tailwind CSS", "MongoDB", "Cloud service"],
+    github: "https://github.com/shpatel123/Grocery-Website",
+    webapp: "https://e-commerce-webapp-nu.vercel.app/",
+  },
+  {
+    id: 2,
+    title: "Web Accessibility Analyzer",
+    description:
+      "A comprehensive full-stack web application that automatically scans websites for accessibility issues and provides detailed reports with actionable insights. Built to help developers create more inclusive web experiences.",
+    image: webAnalyzer,
+    tags: ["React.js", "Tailwind CSS", "Firebase", "Node.js", "Express.js"],
+    github: "https://github.com/shpatel123/Web-Accessibility-Analyzer/tree/master",
+    webapp: "https://web-accessibility-analyzer-2.onrender.com",
+  },
+  {
+    id: 3,
+    title: "Wanderlust Travel Website",
+    description:
+      "Full-stack travel website built with Node.js and Express. Implements CRUD features for travel listings. Responsive frontend using Bootstrap. Integrates cloud services and third-party APIs.",
+    image: travels,
+    tags: ["Node.js", "Express", "MongoDB", "Bootstrap", "API", "Cloud service"],
+    github: "https://github.com/shpatel123/Wanderlust-Website",
+    webapp: "https://www.npmjs.com/package/cmtk-email-validator",
+  },
+  {
+    id: 4,
+    title: "AI Saas Platform",
+    description:
+      "Full stack website where user can use AI features like instagram caption generator, email writer, resume review, image generator etc. Built with React for frontend and Node.js with Express for backend. Integrated various AI APIs to provide functionalities.",
+    image: saas,
+    tags: ["React.js", "Node.js", "Express.js", "Neon (PostgreSQL)", "Clerk Authentication"],
+    github: "https://github.com/shpatel123/QuickAI",
+    webapp: "https://quickai-frontend-omgr.onrender.com/",
+  },
+  {
+    id: 5,
+    title: "AI Trip Planner",
+    description:
+      "AI Trip Planner is an innovative, AI-powered travel planning platform that transforms how users create personalized travel itineraries.",
+    image: Aitrip,
+    tags: ["Next.js", " TypeScript ", "React.js", "Tailwind CSS", "Convex", "Clerk", "Arcjet"],
+    github: "https://github.com/shpatel123/Trip-Planner",
+    webapp: "https://trip-planner-c5f8pzhoc-shubham-bhalalas-projects.vercel.app/",
+  },
+];
 
 export const certificates = [
   {
